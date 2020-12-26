@@ -4,18 +4,22 @@ describe('the prime factors canary spec', () => {
   });
 });
 
-let findPrimeFactors = () => { return []; };
+let findPrimeFactors = (number) => {
+   let factors = [];
+   for (let divisor = 2; number > 1; divisor += 1) {
+     for (; number % divisor === 0; number /= divisor) factors.push(divisor);
+   }
+   return factors;
+ };
 
 describe('a prime factors function should', () => {
   it('return none for 1', () => {
   expect(findPrimeFactors(1)).toEqual([]);
 });
-  it.todo('return 2 for 2');
-  it.todo('return 3 for 3');
-  it.todo('return 2, 2 for 4');
-  it.todo('return 5 for 5');
-  it.todo('return 2, 3 for 6');
-  it.todo('return 7 for 7');
-  it.todo('return 2, 2, 2 for 8');
-  it.todo('return 3, 3 for 9');
+  it('return 2,2,2,2,2,3,3,3 for 864', () => {
+  expect(findPrimeFactors(864)).toEqual([2,2,2,2,2,3,3,3]);
+});
+  it('return 993 for 993', () => {
+  expect(findPrimeFactors(993)).toEqual([993]);
+});
 });
